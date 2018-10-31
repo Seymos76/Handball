@@ -13,7 +13,7 @@ services:
         - .:/application
       environment:
         - TZ=Europe/Moscow
-        - MYSQL_ROOT_PASSWORD/ dinosaure76
+        - MYSQL_ROOT_PASSWORD=dinosaure76
         - MYSQL_DATABASE=handball_api
         - MYSQL_USER=handball_api
         - MYSQL_PASSWORD=handball_api
