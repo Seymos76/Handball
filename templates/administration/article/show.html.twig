@@ -4,9 +4,7 @@
 {% block header %}Article {{ article.id }} - {{ article.title }}{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
-
-    <table class="table">
+    <table class="table table-bordered table-responsive-sm">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -26,7 +24,7 @@
             </tr>
             <tr>
                 <th>Summary</th>
-                <td>{{ article.summary }}</td>
+                <td>{{ article.summary|raw }}</td>
             </tr>
             <tr>
                 <th>Content</th>
@@ -38,6 +36,29 @@
                     <td><img src="{{ asset('uploads/articles/' ~ article.image) }}" alt="" height="300"></td>
                 </tr>
 			{% endif %}
+        </tbody>
+    </table>
+
+    <h2>Commentaires liés</h2>
+
+    <table class="table table-bordered table-responsive-sm">
+        <thead>
+        <tr>
+            <th>NOM</th>
+            <th>Prénom</th>
+            <th>Date publication</th>
+            <th>Contenu</th>
+        </tr>
+        </thead>
+        <tbody>
+		{% for c in article.comments %}
+            <tr>
+                <td>{{ c.author.lastname|capitalize }}</td>
+                <td>{{ c.author.firstname|upper }}</td>
+                <td>{{ c.datePublication|date('d/m/Y H:i:s') }}</td>
+                <td>{{ c.content }}</td>
+            </tr>
+		{% endfor %}
         </tbody>
     </table>
 

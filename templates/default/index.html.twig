@@ -1,13 +1,13 @@
 {% extends "base.html.twig" %}
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('build/home_css.css') }}">
+	<link rel="stylesheet" href="{{ asset('build/home.css') }}">
 {% endblock %}
 {% block body %}
 	{% if slides is defined and slides|length != 0 %}
 		{% include "default/home/_slider.html.twig" %}
 	{% endif %}
+	<div id="react_hello_root"></div>
 	{% if last_meeting is defined and last_meeting is not null %}
-		{% set games = last_meeting.games %}
 		<div class="page__header">
 			<h2>Resultats des matchs du {{ last_meeting.meetingDate }}</h2>
 		</div>
@@ -17,9 +17,9 @@
 			</div>
 		</section>
 	{% endif %}
-	{% if games is defined and games is not null %}
+	{% if next_meeting is defined and next_meeting is not null %}
 		<div class="page__header">
-			<h2>Prochains matchs</h2>
+			<h2>Prochains matchs le {{ next_meeting.meetingDate }}</h2>
 		</div>
 		<section class="flex_row container home__next__matchs">
 			{% set games = next_meeting.games %}
@@ -29,22 +29,4 @@
 {% endblock %}
 {% block javascripts %}
 	<script src="{{ asset('build/home_js.js') }}"></script>
-	<script>
-		console.log("{{ next_meeting.meetingDate }}");
-		let targetDate = new Date("{{ next_meeting.meetingDate }}");
-		console.log(targetDate);
-        let now = new Date();
-		let count = setInterval(function () {
-			let distance = targetDate - now;
-            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            /*console.log(days);
-            console.log(hours);
-            console.log(minutes);
-            console.log(seconds);*/
-            $(".timer__days").innerText = days;
-        }, 1000);
-	</script>
 {% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+	{% if team.slug == "equipe-1" %}
+		<link rel="stylesheet" href="{{ asset('build/bray_forges.css') }}">
+	{% else %}
+		<link rel="stylesheet" href="{{ asset('build/players.css') }}">
+	{% endif %}
+{% endblock %}
+
+{% block body %}
+	<div class="page__header">
+		<h1>Les joueurs</h1>
+	</div>
+	{% if team.slug == "equipe-1" %}
+		<div class="blason">
+			<img src="{{ asset('images/entente_bray_forges.jpg') }}" alt="" height="200">
+		</div>
+	{% endif %}
+	<section class="players__container">
+		{% for p in team.players %}
+			<section class="player__container">
+				<div class="player__team">
+					<span>{{ p.team.name }}</span>
+				</div>
+				<div class="player__avatar">
+					<img src="{{ asset('images/player.jpg') }}" alt="">
+				</div>
+				<div class="player__name">
+					<span>{{ p.fullname }}</span>
+				</div>
+				<div class="player__position">
+					<span>{{ p.position }}</span>
+				</div>
+			</section>
+		{% endfor %}
+	</section>
+{% endblock %}

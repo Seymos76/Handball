@@ -1,0 +1,86 @@
+.articles__container {
+	position: relative;
+	width: 60%;
+	margin: 25px auto;
+}
+
+@media screen and (max-width: 420px) {
+	.articles__container {
+		width: 95%;
+		margin: 15px auto;
+	}
+}
+
+article {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 48%;
+	margin: 20px auto;
+	height: auto;
+	background-color: #e0e0e0;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	box-shadow: 0 5px 3px #e0e0e0 ;
+
+	figure {
+		position: relative;
+		width: 100%;
+		margin: 0 auto;
+		padding: 0;
+		img {
+			width: 100%;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+		}
+	}
+	.article__details {
+		width: 100%;
+		margin: 0 auto;
+		height: inherit;
+		text-align: center;
+		padding: 20px 0;
+		display: flex;
+		flex-direction: column;
+		h2 {
+			display: inline-block;
+			width: 80%;
+			margin: 10px auto;
+			font-size: 1.4em;
+			font-family: "New Athletic M54";
+		}
+		small {
+			display: inline-block;
+			width: 80%;
+			margin: 10px auto;
+		}
+		p {
+			font-size: 1em;
+			padding: 5px 20px;
+			text-align: left;
+		}
+		a {
+			width: 80%;
+			margin: 10px auto;
+		}
+	}
+}
+@media screen and (max-width: 420px) {
+	article {
+		width: 95%;
+		margin: 15px auto;
+	}
+}
+
+.pagination__container {
+	position: relative;
+	width: 90%;
+	margin: 25px auto;
+	text-align: center;
+	display: flex;
+
+	nav {
+		margin: auto;
+	}
+}

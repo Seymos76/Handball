@@ -12,7 +12,8 @@
             </tr>
             <tr>
                 <th>Training_date</th>
-                <td>{{ training.trainingDate ? training.trainingDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ training.timeStart ? training.timeStart|date('H:i:s') : '' }}</td>
+                <td>{{ training.timeEnd ? training.timeEnd|date('H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>

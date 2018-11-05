@@ -16,20 +16,6 @@ class CommentType extends AbstractType
     {
         $builder
             ->add(
-                'name',
-                TextType::class,
-                array(
-                    'label' => "Ton nom"
-                )
-            )
-            ->add(
-                'email',
-                EmailType::class,
-                array(
-                    'label' => "Ton email"
-                )
-            )
-            ->add(
                 'content',
                 TextareaType::class,
                 array(

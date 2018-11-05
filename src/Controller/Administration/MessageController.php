@@ -4,7 +4,10 @@ namespace App\Controller\Administration;
 
 use App\Entity\Message;
 use App\Form\MessageType;
+use App\Manager\MessageManager;
 use App\Repository\MessageRepository;
+use App\Service\Mail\Mailer;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +23,11 @@ class MessageController extends AbstractController
      */
     public function index(MessageRepository $messageRepository): Response
     {
+        $allMessages = $messageRepository->findAll();
+        $parents = $messageRepository->findParentMessages();
+        dump($allMessages);
+        dump($parents);
+        die;
         return $this->render('administration/message/index.html.twig', ['messages' => $messageRepository->findAll()]);
     }
 
@@ -52,6 +60,39 @@ class MessageController extends AbstractController
     public function show(Message $message): Response
     {
         return $this->render('administration/message/show.html.twig', ['message' => $message]);
+    }
+
+    /**
+     * @Route("/repondre/{id}", name="message_answer", methods={"GET|POST"})
+     * @ParamConverter("message", class="App\Entity\Message")
+     * @param Message $message
+     * @param Request $request
+     * @return Response
+     */
+    public function answer(Message $message, Request $request, Mailer $mailer, MessageManager $messageManager)
+    {
+        $answer = new Message();
+        $user = $this->getUser();
+        dump($user);
+        $answer->setName($user->getFirstname()." ".$user->getLastname());
+        $answer->setEmail($user->getEmail());
+        $form = $this->createForm(MessageType::class, $answer);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // record in db
+            $message->addAnswer($answer);
+            $messageManager->update($message);
+            $messageManager->update($answer);
+            $mailer->sendResponse($answer, $message);
+            $this->addFlash('success',"Votre réponse a bien été envoyée à son destinataire.");
+            return $this->redirectToRoute('meeting_show', ['id' => $message->getId()]);
+        }
+        return $this->render(
+            'administration/message/answer.html.twig', [
+                'form' => $form->createView(),
+                'message' => $message
+            ]
+        );
     }
 
     /**

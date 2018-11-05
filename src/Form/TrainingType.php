@@ -7,6 +7,7 @@ use App\Entity\Training;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,10 +26,17 @@ class TrainingType extends AbstractType
                 )
             )
             ->add(
-                'training_date',
-                DateType::class,
+                'timeStart',
+                TimeType::class,
                 array(
-                    'label' => "Date de l'entraînement"
+                    'label' => "Début de l'entraînement"
+                )
+            )
+            ->add(
+                'timeEnd',
+                TimeType::class,
+                array(
+                    'label' => "Fin de l'entraînement"
                 )
             )
         ;

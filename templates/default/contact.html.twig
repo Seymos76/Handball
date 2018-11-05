@@ -1,12 +1,73 @@
 {% extends "base.html.twig" %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('build/contact.css') }}">
+{% endblock %}
 
 {% block body %}
-	contact
-	{{ form_start(form) }}
-	{{ form_row(form.name) }}
-	{{ form_row(form.email) }}
-	{{ form_row(form.subject) }}
-	{{ form_row(form.message) }}
-	<button type="submit">Envoyer</button>
-	{{ form_end(form) }}
+	<div class="page__header">
+		<h1>Nous contacter</h1>
+	</div>
+	<section class="contact__container flex_column">
+		<nav id="contact_tab" role="tablist">
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Coordonnées</a>
+				<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Formulaire</a>
+			</div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+				<section class="contact__informations">
+					<h2>Association du club de Handball de Forges-les-Eaux</h2>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium atque dolorum eos exercitationem minima praesentium, quas recusandae sit? Adipisci beatae deleniti ipsa modi, natus quidem reiciendis repellendus repudiandae vitae voluptate.
+					</p>
+					<section class="contact__info__coords">
+						<div class="coords__address">
+							<a href="https://www.openstreetmap.org/?mlat=49.61261&amp;mlon=1.53518#map=17/49.61261/1.53518" target="_blank" class="btn btn-outline-dark">
+								<i class="fa fa-map"></i>
+								<span>Boulevard Madame de Sévigné  Forges les Eaux</span>
+							</a>
+						</div>
+						<div class="coords__phone">
+							<a href="tel:0685713590" class="btn btn-outline-primary">
+								<i class="fa fa-phone"></i>
+								<span>06 85 71 35 90</span>
+							</a>
+						</div>
+						<div class="coords__email">
+							<a href="mailto:forgesleseauxhand@gmail.com" class="btn btn-outline-info">
+								<i class="fa fa-envelope"></i>
+								<span>forgesleseauxhand@gmail.com</span>
+							</a>
+						</div>
+					</section>
+				</section>
+			</div>
+			<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+				<section class="contact__form">
+					{{ form_start(form) }}
+						<fieldset class="form-group">
+							{{ form_label(form.name) }}
+							{{ form_widget(form.name) }}
+						</fieldset>
+						<fieldset class="form-group">
+							{{ form_label(form.email) }}
+							{{ form_widget(form.email) }}
+						</fieldset>
+						<fieldset class="form-group">
+							{{ form_label(form.subject) }}
+							{{ form_widget(form.subject) }}
+						</fieldset>
+						<fieldset class="form-group">
+							{{ form_label(form.message) }}
+							{{ form_widget(form.message) }}
+						</fieldset>
+						<fieldset class="form-group">
+							<button type="submit" class="btn btn-primary col-sm-12">Envoyer</button>
+						</fieldset>
+					{{ form_end(form) }}
+				</section>
+			</div>
+		</div>
+	</section>
 {% endblock %}

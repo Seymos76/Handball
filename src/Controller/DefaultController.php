@@ -11,7 +11,7 @@ use App\Repository\GameRepository;
 use App\Repository\MeetingRepository;
 use App\Repository\SlideRepository;
 use App\Repository\TrainingRepository;
-use App\Service\Date;
+use App\Service\Helpers\DateHelper;
 use App\Service\Mail\Mailer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,17 +23,18 @@ class DefaultController extends AbstractController
      * @Route(path="/", name="index")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(SlideRepository $slideRepository, MeetingRepository $meetingRepository, Date $date)
+    public function index(SlideRepository $slideRepository, MeetingRepository $meetingRepository, DateHelper $date)
     {
         $saturday = $date->getNextSaturday();
         $prev_saturday = $date->getPreviousSaturday();
+        $prev_saturday = preg_replace("/-/", "/", $prev_saturday);
+        $slides = $slideRepository->findAll();
+        $last_meeting = $meetingRepository->findLastMeeting($prev_saturday);
+        $next_meeting = $meetingRepository->findNextMeeting($saturday);
         dump($prev_saturday);
         dump($saturday);
-        $slides = $slideRepository->findAll();
-        $next_meeting = $meetingRepository->findNextMeeting($saturday);
-        $last_meeting = $meetingRepository->findLastMeeting($prev_saturday);
-        dump($next_meeting);
         dump($last_meeting);
+        dump($next_meeting);
         return $this->render(
             'default/index.html.twig', [
                 'slides' => $slides,
@@ -53,64 +54,6 @@ class DefaultController extends AbstractController
         return $this->render(
             'default/trainings.html.twig', [
                 'trainings' => $repository->findAll()
-            ]
-        );
-    }
-
-    /**
-     * @Route(path="/matchs", name="matchs")
-     * @param GameRepository $repository
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function matchs(GameRepository $repository)
-    {
-        return $this->render(
-            'default/matchs.html.twig', [
-                'matchs' => $repository->findAll()
-            ]
-        );
-    }
-
-    /**
-     * @Route(path="/resultats", name="results")
-     * @param GameRepository $repository
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function results(GameRepository $repository)
-    {
-        return $this->render(
-            'default/results.html.twig', [
-                'results' => $repository->findResults()
-            ]
-        );
-    }
-
-    /**
-     * @Route(path="/galerie",  name="galleries")
-     * @param GalleryRepository $repository
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function galleries(GalleryRepository $repository)
-    {
-        return $this->render(
-            'default/galleries.html.twig', [
-                'galleries' => $repository->findAll()
-            ]
-        );
-    }
-
-    /**
-     * @Route("/galerie/{slug}", name="gallery")
-     */
-    public function gallery(string $slug, GalleryRepository $repository)
-    {
-        return $this->render(
-            'default/gallery.html.twig', [
-                'gallery' => $repository->findOneBy(
-                    array(
-                        'slug' => $slug
-                    )
-                )
             ]
         );
     }
@@ -140,5 +83,14 @@ class DefaultController extends AbstractController
                 'form' => $form->createView()
             ]
         );
+    }
+
+    /**
+     * @Route(path="/mentions-legales", name="mentions")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function mentions()
+    {
+        return $this->render('default/mentions.html.twig');
     }
 }

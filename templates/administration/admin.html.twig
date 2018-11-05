@@ -59,21 +59,6 @@
 											<div class="notification-content"><i class="fa fa-envelope bg-green"></i>You have 6 new messages </div>
 											<div class="notification-time"><small>4 minutes ago</small></div>
 										</div></a></li>
-								<li><a rel="nofollow" href="#" class="dropdown-item">
-										<div class="notification">
-											<div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
-											<div class="notification-time"><small>4 minutes ago</small></div>
-										</div></a></li>
-								<li><a rel="nofollow" href="#" class="dropdown-item">
-										<div class="notification">
-											<div class="notification-content"><i class="fa fa-upload bg-orange"></i>Server Rebooted</div>
-											<div class="notification-time"><small>4 minutes ago</small></div>
-										</div></a></li>
-								<li><a rel="nofollow" href="#" class="dropdown-item">
-										<div class="notification">
-											<div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
-											<div class="notification-time"><small>10 minutes ago</small></div>
-										</div></a></li>
 								<li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
 							</ul>
 						</li>
@@ -85,24 +70,7 @@
 										<div class="msg-body">
 											<h3 class="h5">Jason Doe</h3><span>Sent You Message</span>
 										</div></a></li>
-								<li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-										<div class="msg-profile"> <img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
-										<div class="msg-body">
-											<h3 class="h5">Frank Williams</h3><span>Sent You Message</span>
-										</div></a></li>
-								<li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-										<div class="msg-profile"> <img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
-										<div class="msg-body">
-											<h3 class="h5">Ashley Wood</h3><span>Sent You Message</span>
-										</div></a></li>
 								<li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages   </strong></a></li>
-							</ul>
-						</li>
-						<!-- Languages dropdown    -->
-						<li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="img/flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block">English</span></a>
-							<ul aria-labelledby="languages" class="dropdown-menu">
-								<li><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/DE.png" alt="English" class="mr-2">German</a></li>
-								<li><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/FR.png" alt="English" class="mr-2">French                                         </a></li>
 							</ul>
 						</li>
 						<!-- Logout    -->
@@ -126,13 +94,15 @@
 			<!-- Sidebar Navidation Menus--><span class="heading">Main</span>
 			<ul class="list-unstyled">
 				<li class="active"><a href="{{ path('administration') }}"> <i class="icon-home"></i>Home </a></li>
-				<li><a href="{{ path('meeting_index') }}"> <i class="fa fa-calendar"></i>Convocations</a></li>
+				<li><a href="{{ path('meeting_index') }}"> <i class="fa fa-calendar"></i>Les convocations</a></li>
 				<li><a href="{{ path('team_index') }}"> <i class="fa fa-users"></i>Les équipes </a></li>
 				<li><a href="{{ path('player_index') }}"> <i class="fa fa-users"></i>Les joueurs </a></li>
 				<li><a href="{{ path('gallery_index') }}"> <i class="fa fa-file-image-o"></i>Les albums </a></li>
 				<li><a href="{{ path('slide_index') }}"> <i class="fa fa-bar-chart"></i>Les slides </a></li>
 				<li><a href="{{ path('training_index') }}"> <i class="fa fa-bar-chart"></i>Les entraînements </a></li>
 				<li><a href="{{ path('article_index') }}"> <i class="fa fa-map-pin"></i>Les articles </a></li>
+				<li><a href="{{ path('message_index') }}"> <i class="fa fa-envelope"></i>La messagerie </a></li>
+				<li><a href="{{ path('user_index') }}"> <i class="fa fa-user"></i>Les utilisateurs </a></li>
 				<li><a href="{{ path('index') }}" target="_blank"> <i class="fa fa-eye"></i>Voir le site </a></li>
 			</ul>
 		</nav>

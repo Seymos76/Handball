@@ -8,7 +8,8 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Training_date</th>
+                <th>Début</th>
+                <th>Fin</th>
                 <th>Training team</th>
                 <th>actions</th>
             </tr>
@@ -17,7 +18,7 @@
         {% for training in trainings %}
             <tr>
                 <td>{{ training.id }}</td>
-                <td>{{ training.trainingDate ? training.trainingDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ training.timeStart|date('H:i') }}</td>
                 <td>{{ training.team.name }}</td>
                 <td>
                     <a href="{{ path('training_show', {'id': training.id}) }}">show</a>

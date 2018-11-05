@@ -2,11 +2,21 @@ html {
   margin: 0;
   padding: 0; }
 
+* {
+  box-sizing: inherit; }
+  *:focus {
+    outline: none; }
+
+a {
+  text-decoration: none; }
+
 body {
+  position: relative;
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  font-family: Arial; }
 
 .full_width {
   width: 100%; }
@@ -17,56 +27,109 @@ body {
 
 .flex_row {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  flex-wrap: wrap; }
 
+.container {
+  position: relative;
+  width: 60%;
+  margin: auto; }
+
+@media screen and (min-width: 800px) and (max-width: 1024px) {
+  .container {
+    width: 80% !important; } }
+@media screen and (min-width: 421px) and (max-width: 799px) {
+  .container {
+    width: 90% !important; } }
+@media screen and (max-width: 420px) {
+  .container {
+    width: 100% !important;
+    margin: 0;
+    padding: 0 !important; } }
 .debug {
   border: 1px solid red; }
 
 header {
   position: fixed;
-  left: 0;
   right: 0;
   top: 0;
   height: 100px;
+  width: 200px;
   z-index: 999;
-  padding: 15px 25px;
-  justify-content: space-between; }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #12BEDB;
+  background-color: #ffffff;
+  border-left: 1px solid #12BEDB;
+  transition: all .3s ease; }
+  header.responsive {
+    width: 100%;
+    transition: all .3s ease; }
+  header.active {
+    width: 100%;
+    transition: all .3s ease; }
+  header.scrolled {
+    transition: all .3s ease;
+    background-color: #ffffff;
+    box-shadow: 1px 1px 1px #12BEDB; }
   header div.header__logo {
     text-align: center;
     width: 108px;
-    height: 100%; }
+    height: 80px;
+    margin: auto auto auto 10px; }
     header div.header__logo img {
       height: 100%; }
   header div.header__menu_button {
-    width: 108px;
-    height: 100%;
-    padding: 15px 20px; }
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    margin: auto 10px auto; }
     header div.header__menu_button button {
       display: inline-block;
       text-decoration: none;
       width: 100%;
-      height: auto;
-      border: 1px solid red;
-      background-color: transparent; }
+      height: 100%;
+      background-color: transparent;
+      border: none; }
+      header div.header__menu_button button a:focus {
+        border: none; }
       header div.header__menu_button button i.fa {
         font-size: 2.5em;
         color: #13BEDB; }
 
-header.active {
-  background-color: #fff; }
-
+@media screen and (max-width: 420px) {
+  header {
+    background-color: #fff; } }
 .main__navigation__overlay {
-  display: none; }
-
-.main__navigation__overlay.active {
-  display: block;
   position: fixed;
   top: 100px;
   right: 0;
   bottom: 0;
   left: 0;
   background-color: antiquewhite;
-  z-index: 1; }
+  z-index: 9;
+  transition: all .3s ease; }
+
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+  /*transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);*/
+  transition: all .3s ease; }
+
+.slide-fade-leave-active {
+  transition: all .3s ease; }
+
+.slide-fade-enter, .slide-fade-leave-to
+ {
+  transform: translateX(1920px);
+  opacity: 0; }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s; }
+
+.fade-enter, .fade-leave-to {
+  opacity: 0; }
 
 .overlay__menu__container {
   position: relative;
@@ -78,7 +141,7 @@ header.active {
 .navigation__container {
   position: relative;
   width: 100%;
-  height: 60%;
+  height: auto;
   display: flex; }
   .navigation__container nav {
     position: relative;
@@ -93,25 +156,140 @@ header.active {
       text-decoration: none;
       margin: 25px auto;
       border-bottom: 5px solid #10BFDB;
-      font-size: 1.6em;
+      font-size: 1.2rem;
       text-align: center;
       font-family: "New Athletic M54"; }
 
+@media screen and (max-width: 420px) {
+  .navigation__container nav {
+    width: 95%; }
+    .navigation__container nav a {
+      margin: 15px auto;
+      font-size: 1em;
+      text-transform: uppercase; } }
+@media screen and (max-width: 320px) {
+  .navigation__container nav {
+    width: 90%; }
+    .navigation__container nav a {
+      margin: 10px auto;
+      height: 30px;
+      line-height: 30px;
+      font-size: 1em; } }
 section.main {
   position: relative;
   width: 100%;
   height: auto;
-  margin-top: 0;
-  padding-top: 100px; }
+  margin-top: 100px;
+  padding-bottom: 30px; }
 
+@media screen and (max-width: 420px) {
+  section.main {
+    margin-top: 100px; } }
 div.page__header {
-  width: 30%;
+  width: 100%;
   margin: auto;
-  height: 150px; }
+  height: 100px;
+  margin-bottom: 25px; }
   div.page__header h1 {
+    width: 60%;
     line-height: 80px;
-    color: #000000;
+    color: #12BEDB;
+    font-size: 2.5rem !important;
     border-bottom: 5px solid #12BEDB;
-    text-align: center; }
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "New Athletic M54";
+    margin: auto; }
+  div.page__header h2 {
+    width: 60%;
+    line-height: 80px;
+    color: #12BEDB;
+    font-size: 1.8rem !important;
+    border-bottom: 5px solid #12BEDB;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "New Athletic M54";
+    margin: auto; }
+
+@media screen and (min-width: 800px) and (max-width: 1024px) {
+  div.page__header {
+    width: 100% !important;
+    height: 80px; }
+    div.page__header h1 {
+      line-height: 80px;
+      font-size: 1.5em !important;
+      color: #000000;
+      text-align: center; }
+    div.page__header h2 {
+      line-height: 80px;
+      font-size: 1em !important;
+      color: #000000;
+      border-bottom: 5px solid #12BEDB;
+      text-align: center; } }
+@media screen and (min-width: 421px) and (max-width: 799px) {
+  div.page__header {
+    width: 100% !important;
+    height: 80px; }
+    div.page__header h1 {
+      width: 100% !important;
+      line-height: 80px;
+      font-size: 1.5em !important;
+      color: #000000;
+      border-bottom: 5px solid #12BEDB;
+      text-align: center; }
+    div.page__header h2 {
+      width: 100% !important;
+      line-height: 80px;
+      font-size: 1em !important;
+      color: #000000;
+      border-bottom: 5px solid #12BEDB;
+      text-align: center; } }
+@media screen and (max-width: 420px) {
+  div.page__header {
+    width: 100% !important;
+    height: 80px; }
+    div.page__header h1 {
+      width: 100% !important;
+      line-height: 80px;
+      font-size: 1.5em !important;
+      color: #000000;
+      border-bottom: 5px solid #12BEDB;
+      text-align: center; }
+    div.page__header h2 {
+      width: 100% !important;
+      line-height: 80px;
+      font-size: 1em !important;
+      font-weight: 400;
+      color: #000000;
+      border-bottom: 5px solid #12BEDB;
+      text-align: center; } }
+.pagination__container {
+  position: relative;
+  width: 90%;
+  margin: 25px auto;
+  text-align: center;
+  display: flex; }
+  .pagination__container nav {
+    margin: auto; }
+
+footer {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  background-color: #12BEDB; }
+  footer .copyrights {
+    width: 80%;
+    height: inherit;
+    margin: 0 auto;
+    text-align: center;
+    color: #ffffff; }
+    footer .copyrights a {
+      text-decoration: none;
+      display: inline-block;
+      line-height: 50px; }
+    footer .copyrights p {
+      line-height: 50px;
+      margin: 0 auto;
+      padding: 0; }
 
 /*# sourceMappingURL=layout.css.map */

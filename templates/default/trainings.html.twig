@@ -1,6 +1,23 @@
 {% extends "base.html.twig" %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('build/trainings.css') }}">
+{% endblock %}
 
 {% block body %}
-	Entrainements
-	{{ dump(trainings) }}
+	<div class="page__header">
+		<h1>Les entraînements</h1>
+	</div>
+	<section class="container result__container">
+	<div class="result__row">
+		{% for t in trainings %}
+			<div class="result__item">
+				<div class="result__team">
+					<p>{{ t.team.name }}</p>
+					<div class="result__angle"></div>
+				</div>
+				<div class="result__training">Mercredi - {{ t.timeStart|date('H:i') }} -> {{ t.timeEnd|date('H:i') }}</div>
+			</div>
+		{% endfor %}
+	</div>
+	</section>
 {% endblock %}

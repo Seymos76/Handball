@@ -30,6 +30,16 @@ class GameRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findResults()
+    {
+        return $this->createQueryBuilder('g')
+            ->where('g.winner != :winner')
+            ->setParameter('winner', null)
+            ->orderBy('g.id', 'DESC')
+            ->getQuery()
+            ->getArrayResult();
+    }
+
 //    /**
 //     * @return Match[] Returns an array of Match objects
 //     */

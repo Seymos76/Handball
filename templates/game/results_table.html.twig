@@ -1,0 +1,53 @@
+<table class="table table-striped">
+	<thead class="thead-light"> <!-- add class="thead-light" for a light header -->
+	<tr>
+		<th scope="col" class="filter-select filter-exact" data-placeholder="Sélectionnez une équipe">Équipe de Forges
+		</th>
+		<th scope="col" class="filter-select filter-exact" data-placeholder="Sélectionnez l'adversaire">Adversaire</th>
+		<th scope="col" class="filter-select filter-exact" data-placeholder="Sélectionnez une équipe">Victoire</th>
+		<th scope="col" class="sorter-false filter-false">Score</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for m in meetings %}
+		{% for g in m.games %}
+			<tr>
+				<td scope="row">{{ g.team.name }}</td>
+				<td>{{ g.opponent }}</td>
+				<td>{{ g.winner }}</td>
+				<td>{{ g.winnerScore }} - {{ g.looserScore }}</td>
+			</tr>
+		{% endfor %}
+	{% endfor %}
+	</tbody>
+	<tfoot>
+	<tr>
+		<th scope="col">Équipe de Forges</th>
+		<th scope="col">Adversaire</th>
+		<th scope="col">Victoire</th>
+		<th scope="col">Score</th>
+	</tr>
+	<tr>
+		<th colspan="4" class="ts-pager">
+			<div class="form-inline">
+				<div class="btn-group btn-group-sm mx-1" role="group">
+					<button type="button" class="btn btn-secondary first" title="first">⇤</button>
+					<button type="button" class="btn btn-secondary prev" title="previous">←</button>
+				</div>
+				<span class="pagedisplay"></span>
+				<div class="btn-group btn-group-sm mx-1" role="group">
+					<button type="button" class="btn btn-secondary next" title="next">→</button>
+					<button type="button" class="btn btn-secondary last" title="last">⇥</button>
+				</div>
+				<select class="form-control-sm custom-select px-1 pagesize" title="Select page size">
+					<option selected="selected" value="10">10</option>
+					<option value="20">20</option>
+					<option value="30">30</option>
+					<option value="all">All Rows</option>
+				</select>
+				<button type="button" class="btn btn-outline-danger reset">Réinitialiser les filtres</button>
+			</div>
+		</th>
+	</tr>
+	</tfoot>
+</table>

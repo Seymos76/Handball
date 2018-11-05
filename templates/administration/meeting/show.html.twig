@@ -10,6 +10,8 @@
             <th>Match</th>
             <th>Équipe</th>
             <th>Adversaire</th>
+            <th>Lieu de rencontre</th>
+            <th>Date de rencontre</th>
 			{% if meeting.validated %}
                 <th>Vainqueur</th>
                 <th>Perdant</th>
@@ -24,6 +26,8 @@
                 <td>{{ g.id }}</td>
                 <td>{{ g.team.name }}</td>
                 <td>{{ g.opponent }}</td>
+                <td>{{ g.appointmentLocation }}</td>
+                <td>{{ g.appointmentDate|date('d/m/Y H:i') }}</td>
 				{% if meeting.validated %}
                     <td>{{ g.winner }} : {{ g.winnerScore }}</td>
                     <td>{{ g.looser }} : {{ g.looserScore }}</td>

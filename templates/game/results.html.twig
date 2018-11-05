@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('build/results.css') }}">
+{% endblock %}
+{% block body %}
+	<div class="page__header">
+		<h1>Resultats des matchs</h1>
+	</div>
+	<section class="container">
+		<div class="last__results">
+			{% include 'game/results_table.html.twig' %}
+		</div>
+	</section>
+{% endblock %}

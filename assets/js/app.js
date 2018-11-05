@@ -1,19 +1,40 @@
-console.log('app is ok');
-const $ = require('jquery');
-$(function () {
-    const menu_toggle = $("#menu_toggle");
-    const menu_icon = $("#menu_toggle i.fa");
-    const overlay_menu = $(".main__navigation__overlay");
-    menu_toggle.click(function () {
-        if (overlay_menu.hasClass('active')) {
-            menu_icon.removeClass('fa-times');
-            menu_icon.addClass('fa-bars');
-            overlay_menu.removeClass('active');
+let vm = new Vue({
+    el: "#menu",
+    data: {
+        menu: false,
+        class_name: "fa-bars",
+        header_class_names: "",
+        mobile: false,
+    },
+    created: function () {
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+        {
+            this.mobile = true;
+            this.header_class_names = "responsive";
+            return this.mobile;
         } else {
-            console.log('menu displayed');
-            overlay_menu.addClass('active');
-            menu_icon.removeClass('fa-bars');
-            menu_icon.addClass('fa-times');
+            this.mobile = false;
+            return this.mobile;
         }
-    });
+    },
+    methods: {
+        toggleMenu() {
+            this.menu ^= true
+            console.log(this.menu)
+            console.log(this.mobile)
+            if (this.menu == true && this.mobile == true) {
+                this.class_name = "fa-times"
+                this.header_class_names = "active responsive"
+            } else if (this.menu == true && this.mobile == false) {
+                this.class_name = "fa-times"
+                this.header_class_names = "active"
+            } else if (this.menu == false && this.mobile == true) {
+                this.class_name = "fa-bars"
+                this.header_class_names = "responsive"
+            } else {
+                this.class_name = "fa-bars"
+                this.header_class_names = ""
+            }
+        },
+    },
 });

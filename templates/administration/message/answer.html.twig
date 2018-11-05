@@ -1,0 +1,8 @@
+{% extends "administration/admin.html.twig" %}
+
+{% block title %}Gestion des messages{% endblock %}
+{% block header %}Répondre aux message de {{ message.name }}{% endblock %}
+
+{% block body %}
+	{% include "administration/message/_answer_form.html.twig" %}
+{% endblock %}

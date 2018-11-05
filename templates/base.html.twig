@@ -15,35 +15,47 @@
 	{% for message in app.session.flashbag.get('success') %}
         {{ message }}
 	{% endfor %}
-	<header class="flex_row">
-		<div class="header__logo">
-			<img src="{{ asset('images/logo.png') }}" alt="">
-		</div>
-		<div class="header__menu_button">
-			<button type="button" id="menu_toggle">
-				<i class="fa fa-bars"></i>
-			</button>
-		</div>
-	</header>
-	<section class="main__navigation__overlay flex_row">
-		<div class="overlay__menu__container flex_column">
-			<div class="navigation__container">
-				<nav class="flex_column">
-					<a href="{{ path('index') }}">Accueil</a>
-					<a href="{{ path('trainings') }}">Les entrainements</a>
-					<a href="{{ path('results') }}">Les resultats</a>
-					<a href="{{ path('galleries') }}">La galerie</a>
-					<a href="{{ path('blog') }}">Les actualites</a>
-					<a href="{{ path('contact') }}">Nous contacter</a>
-				</nav>
+	<div id="menu">
+		<header :class="header_class_names">
+			<div class="header__logo">
+				<img src="{{ asset('images/logo.png') }}" alt="">
 			</div>
-		</div>
-	</section>
+			<div class="header__menu_button">
+				<button @click="toggleMenu()">
+					<i class="fa" :class="class_name"></i>
+				</button>
+			</div>
+		</header>
+		<transition name="slide-fade">
+			<section class="main__navigation__overlay" v-if="menu">
+				<div class="overlay__menu__container flex_column">
+					<div class="navigation__container">
+						<nav class="flex_column">
+							<a href="{{ path('index') }}">Accueil</a>
+							<a href="{{ path('teams') }}">Les equipes</a>
+							<a href="{{ path('trainings') }}">Les entrainements</a>
+							<a href="{{ path('results') }}">Les resultats</a>
+							<a href="{{ path('galleries') }}">La galerie</a>
+							<a href="{{ path('blog') }}">Les actualites</a>
+							<a href="{{ path('contact') }}">Contact</a>
+						</nav>
+					</div>
+				</div>
+			</section>
+		</transition>
+	</div>
 
     <section class="main">
         {% block body %}{% endblock %}
     </section>
+	<footer>
+		<section class="copyrights">
+			<a href="{{ path('mentions') }}">Mentions légales</a>
+			<p>&copy; Copyrights 2018, réalisation Louis THOMAS</p>
+		</section>
+	</footer>
     <script src="{{ asset('build/manifest.js') }}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="{{ asset('build/app.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

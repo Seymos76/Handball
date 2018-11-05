@@ -19,6 +19,15 @@ class MessageRepository extends ServiceEntityRepository
         parent::__construct($registry, Message::class);
     }
 
+    public function findParentMessages()
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.parent = :parent')
+            ->setParameter('parent', null)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Message[] Returns an array of Message objects
 //     */

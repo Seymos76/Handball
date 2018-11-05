@@ -45,5 +45,13 @@ services:
         tags:
             - { name: security.interactive_login, event: security.interactive_login }
 
+    #meeting.date_filter:
+        #parent: 'api_platform.doctrine.orm.date_filter'
+        #arguments: [ { dateProperty: ~ } ]
+        #tags: [ 'api_platform.filter' ]
+        #autowire: false
+        #autoconfigure: false
+        #public: false
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

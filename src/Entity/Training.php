@@ -18,10 +18,7 @@ class Training
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $training_date;
+    const DATE = "Mercredi";
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Team", inversedBy="training", cascade={"persist", "remove"})
@@ -29,21 +26,19 @@ class Training
      */
     private $team;
 
+    /**
+     * @ORM\Column(type="time")
+     */
+    private $time_start;
+
+    /**
+     * @ORM\Column(type="time")
+     */
+    private $time_end;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTrainingDate(): ?\DateTimeInterface
-    {
-        return $this->training_date;
-    }
-
-    public function setTrainingDate(\DateTimeInterface $training_date): self
-    {
-        $this->training_date = $training_date;
-
-        return $this;
     }
 
     public function getTeam(): ?Team
@@ -54,6 +49,30 @@ class Training
     public function setTeam(Team $team): self
     {
         $this->team = $team;
+
+        return $this;
+    }
+
+    public function getTimeStart(): ?\DateTimeInterface
+    {
+        return $this->time_start;
+    }
+
+    public function setTimeStart(\DateTimeInterface $time_start): self
+    {
+        $this->time_start = $time_start;
+
+        return $this;
+    }
+
+    public function getTimeEnd(): ?\DateTimeInterface
+    {
+        return $this->time_end;
+    }
+
+    public function setTimeEnd(\DateTimeInterface $time_end): self
+    {
+        $this->time_end = $time_end;
 
         return $this;
     }

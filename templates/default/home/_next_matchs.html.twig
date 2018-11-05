@@ -3,26 +3,26 @@
 		<div class="next__match__teams">
 			<h3>{{ g.team.name }} VS {{ g.opponent }}</h3>
 		</div>
-		<div class="next__match__timer flex_row" data-timer="{{ next_meeting.meetingDate }}">
+		<div class="next__match__timer flex_row" data-timer="{{ g.appointmentDate|date('m/d/Y H:i:s') }}" data-id="{{ g.id }}">
 			<div class="timer__box flex_column">
-				<span class="timer__numeric timer__days"></span>
+				<span class="timer__numeric timer__days__{{ g.id }}"></span>
 				<span class="timer__text">jours</span>
 			</div>
 			<div class="timer__box flex_column">
-				<span class="timer__numeric timer__hours">06</span>
+				<span class="timer__numeric timer__hours__{{ g.id }}"></span>
 				<span class="timer__text">heures</span>
 			</div>
 			<div class="timer__box flex_column">
-				<span class="timer__numeric timer__minutes">30</span>
+				<span class="timer__numeric timer__minutes__{{ g.id }}"></span>
 				<span class="timer__text">minutes</span>
 			</div>
 			<div class="timer__box flex_column">
-				<span class="timer__numeric timer__seconds">30</span>
+				<span class="timer__numeric timer__seconds__{{ g.id }}"></span>
 				<span class="timer__text">secondes</span>
 			</div>
 		</div>
 		<div class="next__match__appoint">
-			<p>Lieu de RDV : Gymnase de Forges-les-Eaux</p>
+			<p>Lieu de RDV : {{ g.appointmentLocation }}</p>
 		</div>
 	</div>
 {% endfor %}

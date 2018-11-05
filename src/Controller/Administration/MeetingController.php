@@ -8,11 +8,12 @@ use App\Form\MeetingValidatorType;
 use App\Form\ResultType;
 use App\Manager\MeetingManager;
 use App\Repository\MeetingRepository;
-use App\Service\Date;
+use App\Service\Helpers\DateHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @Route("/meeting")
@@ -30,7 +31,7 @@ class MeetingController extends AbstractController
     /**
      * @Route("/new", name="meeting_new", methods="GET|POST")
      */
-    public function new(Request $request, Date $date, MeetingManager $meetingManager): Response
+    public function new(Request $request, DateHelper $date, MeetingManager $meetingManager): Response
     {
         $meeting = new Meeting();
         $saturday = $date->getNextSaturday();
@@ -56,12 +57,31 @@ class MeetingController extends AbstractController
 
     /**
      * @Route("/{id}", name="meeting_show", methods="GET|POST")
+     * @param Meeting $meeting
+     * @param Request $request
+     * @param MeetingManager $meetingManager
+     * @return Response
      */
-    public function show(Meeting $meeting, Request $request, MeetingManager $meetingManager): Response
+    public function show(Meeting $meeting, Request $request, MeetingManager $meetingManager, ValidatorInterface $validator): Response
     {
         $formValidator = $this->createForm(MeetingValidatorType::class, $meeting);
         $formValidator->handleRequest($request);
         if ($formValidator->isSubmitted() && $formValidator->isValid()) {
+            $meetingErrors = $validator->validate($formValidator);
+            $gamesErrors = $validator->validate($meeting->getGames());
+            if (count($meetingErrors) > 0) {
+                $count = count($meetingErrors);
+                $errorString = (string)$meetingErrors[0]->getMessage() . " : {$count} erreur(s)";
+                $this->addFlash('error',$errorString);
+                return $this->redirectToRoute('meeting_show', ['id' => $meeting->getId()]);
+            }
+            if (count($gamesErrors) > 0) {
+                $count = count($gamesErrors);
+                $errorString = (string)$gamesErrors[0]->getMessage(0) . " : {$count} erreur(s)";
+                $this->addFlash('error',$errorString);
+                return $this->redirectToRoute('meeting_show', ['id' => $meeting->getId()]);
+            }
+            $meeting->setValidated(true);
             $meetingManager->update($meeting);
             $this->addFlash('success',"Rencontre et matchs mis à jour !");
             return $this->redirectToRoute('meeting_show', ['id' => $meeting->getId()]);

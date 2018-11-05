@@ -1,0 +1,50 @@
+.team__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 45%;
+  margin: 20px auto;
+  height: auto;
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  box-shadow: 0 5px 3px #e0e0e0; }
+  .team__item figure {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 0; }
+    .team__item figure img {
+      width: 100%;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px; }
+  .team__item .team__details {
+    width: 100%;
+    margin: 0 auto;
+    height: 100px;
+    text-align: center;
+    padding: 20px 0; }
+    .team__item .team__details h2, .team__item .team__details a {
+      font-size: 1.4em;
+      font-family: "New Athletic M54"; }
+    .team__item .team__details a {
+      background-color: #e0e0e0;
+      padding: 5px 10px; }
+
+@media screen and (min-width: 800px) and (max-width: 1024px) {
+  .team__item {
+    width: 50% !important; } }
+@media screen and (min-width: 421px) and (max-width: 799px) {
+  .team__item {
+    width: 100% !important; } }
+@media screen and (max-width: 420px) {
+  .team__item {
+    width: 100% !important;
+    border-radius: 0 !important;
+    margin: 0 0 25px 0; }
+    .team__item figure img {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0; } }
+
+/*# sourceMappingURL=teams.css.map */

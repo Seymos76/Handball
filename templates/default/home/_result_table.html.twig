@@ -8,12 +8,12 @@
 	</tr>
 	</thead>
 	<tbody>
-	{% for r in last_meeting %}
+	{% for g in last_meeting.games %}
 		<tr>
-			<td scope="row">{{ r.team.name }}</td>
-			<td>{{ r.opponent }}</td>
-			<td>{{ r.winner }}</td>
-			<td>{{ r.winnerScore }}</td>
+			<td scope="row">{{ g.team.name }}</td>
+			<td>{{ g.opponent }}</td>
+			<td>{{ g.winner }}</td>
+			<td>{{ g.winnerScore }}</td>
 		</tr>
 	{% endfor %}
 	</tbody>

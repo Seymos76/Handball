@@ -18,6 +18,9 @@ class ArticleManager extends GalleryManager
     {
         $slugger = new Slugify();
         $article->setSlug($slugger->slugify($article->getTitle()));
+        if ($article->getSummary() === null) {
+            $article->setSummary(substr($article->getContent(),0,200));
+        }
         $this->update($article);
         return $article;
     }

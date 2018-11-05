@@ -23,7 +23,9 @@ class MeetingRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('m')
             ->where('m.meeting_date = :meeting_date')
+            ->andWhere('m.validated = :validated')
             ->setParameter('meeting_date', $date)
+            ->setParameter('validated', false)
             ->getQuery()
             ->getOneOrNullResult();
     }
@@ -32,9 +34,20 @@ class MeetingRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('m')
             ->where('m.meeting_date = :meeting_date')
+            ->andWhere('m.validated = :validated')
             ->setParameter('meeting_date', $date)
+            ->setParameter('validated', true)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    public function findValidatedMeetings()
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.validated = :validated')
+            ->setParameter('validated', true)
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

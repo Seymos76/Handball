@@ -1,10 +1,9 @@
 {% extends 'administration/admin.html.twig' %}
 
-{% block title %}Message{% endblock %}
+{% block title %}Gestion des messages{% endblock %}
+{% block header %}Message{% endblock %}
 
 {% block body %}
-    <h1>Message</h1>
-
     <table class="table">
         <tbody>
             <tr>
@@ -36,7 +35,7 @@
 
     <a href="{{ path('message_index') }}">back to list</a>
 
-    <a href="{{ path('message_edit', {'id': message.id}) }}">edit</a>
+    <a href="{{ path('message_answer', {'id': message.id}) }}">Répondre</a>
 
     {{ include('administration/message/_delete_form.html.twig') }}
 {% endblock %}

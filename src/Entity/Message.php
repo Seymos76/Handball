@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -48,9 +50,20 @@ class Message
      */
     private $date_sent;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="parent", cascade={"persist","remove"})
+     */
+    private $answers;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Message", inversedBy="answers")
+     */
+    private $parent;
+
     public function __construct()
     {
         $this->date_sent = new \DateTime('now');
+        $this->answers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -116,5 +129,52 @@ class Message
         $this->date_sent = $date_sent;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getAnswers(): Collection
+    {
+        return $this->answers;
+    }
+
+    public function addAnswer(Message $answer): self
+    {
+        if (!$this->answers->contains($answer)) {
+            $this->answers[] = $answer;
+            $answer->setParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnswer(Message $answer): self
+    {
+        if ($this->answers->contains($answer)) {
+            $this->answers->removeElement($answer);
+            // set the owning side to null (unless already changed)
+            if ($answer->getParent() === $this) {
+                $answer->setParent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Message
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param Message $parent
+     */
+    public function setParent($parent): void
+    {
+        $this->parent = $parent;
     }
 }

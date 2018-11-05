@@ -1,5 +1,9 @@
 {{ form_start(form) }}
+    {{ form_label(form.team) }}
     {{ form_widget(form.team) }}
-    {{ form_widget(form.training_date) }}
+    {{ form_label(form.timeStart) }}
+    {{ form_widget(form.timeStart) }}
+    {{ form_label(form.timeEnd) }}
+    {{ form_widget(form.timeEnd) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

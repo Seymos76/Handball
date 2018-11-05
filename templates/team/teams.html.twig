@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('build/teams.css') }}">
+{% endblock %}
+{% block body %}
+	<div class="page__header">
+		<h1>Nos equipes</h1>
+	</div>
+	<section class="container flex_row">
+	{% for t in teams %}
+		<div class="team__item">
+			<a href="{{ path('team', {'slug': t.slug}) }}">
+				<figure>
+					<img src="{{ asset('images/team.jpg') }}" alt="Cover">
+				</figure>
+			</a>
+			<div class="team__details">
+				<h2>Equipe Seniors Masculine</h2>
+				<a href="{{ path('team', {'slug': t.slug}) }}" class="btn btn-outline-primary">Voir l'equipe</a>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}

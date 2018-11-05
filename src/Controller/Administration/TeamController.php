@@ -5,6 +5,7 @@ namespace App\Controller\Administration;
 use App\Entity\Team;
 use App\Form\TeamType;
 use App\Repository\TeamRepository;
+use Cocur\Slugify\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,6 +35,8 @@ class TeamController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $slugger = new Slugify();
+            $team->setSlug($slugger->slugify($team->getName()));
             $em->persist($team);
             $em->flush();
             $this->addFlash('success',"L'équipe a été créée !");

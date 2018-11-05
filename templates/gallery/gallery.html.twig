@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('build/album.css') }}">
+{% endblock %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<div class="page__header">
+	<h1>Titre galerie</h1>
+</div>
+<section class="full_width">
+	<div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 500 }'>
+	{% for i in gallery.images %}
+		<div class="grid-item">
+			<img class="image" src="{{ asset('uploads/gallery/' ~ gallery.path ~ i.filename) }}" height="300"/>
+		</div>
+	{% endfor %}
+	</div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('build/masonry.js') }}"></script>
+{% endblock %}

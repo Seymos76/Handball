@@ -1,0 +1,128 @@
+.contact__container {
+	width: 60%;
+	margin: 25px auto;
+	justify-content: center;
+}
+.nav {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-left: 0;
+	margin-bottom: 0;
+	list-style: none;
+	justify-content: space-between;
+}
+.nav-tabs {
+	border: none;
+}
+.nav-tabs .nav-link {
+	width: 40%;
+	color: #ffffff;
+	background-color: #12BEDB;
+	border-color: #12BEDB;
+	text-align: center;
+}
+.nav-tabs .nav-link.active {
+	color: #495057;
+	background-color: #fff;
+	border-color: #12BEDB;
+}
+.contact__informations, .contact__form {
+	position: relative;
+	width: 100%;
+	height: auto;
+	margin: auto;
+	padding: 15px;
+}
+.contact__informations {
+	text-align: center;
+	min-height: 400px;
+	display: flex;
+	flex-direction: column;
+
+	&>* {
+		margin: auto;
+	}
+
+	.contact__info__coords {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+	}
+}
+
+@media screen and (min-width: 800px) and (max-width: 1024px) {
+	.contact__info__coords {
+		flex-direction: column !important;
+		div {
+			margin: 15px auto;
+		}
+	}
+}
+@media screen and (min-width: 421px) and (max-width: 799px) {
+	.contact__container {
+		width: 95%;
+	}
+	.contact__info__coords {
+		flex-direction: column;
+	}
+}
+@media screen and (max-width: 420px) {
+	.contact__container {
+		width: 95%;
+	}
+	.tab-content {
+		margin: 25px auto;
+	}
+	.contact__informations {
+		padding: 0 !important;
+
+		h2 {
+			font-size: 1.5em;
+			margin: 15px auto;
+		}
+	}
+	.contact__info__coords {
+		flex-direction: column !important;
+		width: 95% !important;
+
+		div {
+			margin: 15px 0;
+			a {
+				width: 90%;
+
+				span {
+					font-size: .8em !important;
+				}
+			}
+		}
+	}
+	.contact__form {
+		width: 95% !important;
+		padding: 5px !important;
+		display: flex;
+		flex-direction: column;
+
+		.form-control {
+			display: block;
+			width: 90%;
+			height: calc(2.25rem + 2px);
+			padding: .375rem 1rem !important;
+			margin: auto;
+			font-size: 1rem;
+			line-height: 1.5;
+			color: #495057;
+			background-color: #fff;
+			background-clip: padding-box;
+			border: 1px solid #ced4da;
+			border-radius: .25rem;
+			transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		}
+		button[type=button] {
+			width: 90% !important;
+			margin: auto;
+		}
+	}
+}

@@ -14,6 +14,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Webmozart\Assert\Assert;
 
 class MeetingValidatorType extends AbstractType
 {
@@ -29,6 +30,9 @@ class MeetingValidatorType extends AbstractType
                     'allow_delete' => false,
                     'prototype' => true,
                     'required' => true,
+                    'constraints' => array(
+
+                    ),
                     'attr' => array(
                         'class' => "game_collection_entry"
                     )

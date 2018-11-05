@@ -1,30 +1,9 @@
-div.home__info_button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 50px;
-  height: 50px;
-  z-index: 5;
-  border-radius: 50%;
-  display: flex; }
-  div.home__info_button button {
-    background-color: transparent;
-    margin: auto;
-    width: 100%;
-    height: 100%;
-    border: 5px solid #ffffff;
-    border-radius: 50%; }
-    div.home__info_button button i.fa {
-      color: #000000; }
+section.main {
+  margin-top: 0; }
 
-section.home__info {
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  width: 600px;
-  height: 300px;
-  border: 2px solid red; }
-
+@media screen and (max-width: 420px) {
+  section.main {
+    margin-top: 100px; } }
 div.slider__container {
   position: relative;
   width: 100%;
@@ -95,93 +74,133 @@ div.slider__container {
   opacity: .3;
   pointer-events: none; }
 
-.home__next__match {
+section.home__section {
+  margin: 150px auto !important; }
+
+@media screen and (min-width: 800px) and (max-width: 1024px) {
+  section.home__section {
+    margin: 50px auto !important; } }
+@media screen and (min-width: 421px) and (max-width: 799px) {
+  section.home__section {
+    margin: 30px auto !important; } }
+@media screen and (max-width: 420px) {
+  section.home__section {
+    margin: 25px auto !important; } }
+.home__next__matchs {
+  flex-wrap: wrap; }
+
+.next__match__item {
   position: relative;
-  width: 400px;
-  height: 200px;
-  margin: 25px auto;
+  width: 48%;
+  height: auto;
+  margin: 10px auto;
   border: 2px solid #e0e0e0; }
-  .home__next__match h2 {
+  .next__match__item .next__match__teams {
     position: relative;
     margin: 0;
     padding: 0;
-    height: 50px;
-    line-height: 50px;
-    text-align: center; }
-  .home__next__match .next__match__teams {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    width: 400px;
+    width: 100%;
     height: 50px;
     text-align: center;
-    background-color: #f4f4f4; }
-    .home__next__match .next__match__teams p {
+    background-color: #ffffff; }
+    .next__match__item .next__match__teams h3 {
       color: #222222;
-      font-weight: bold;
+      font-weight: lighter;
       line-height: 50px;
       padding: 0;
+      font-size: 1.2em;
       margin: 0; }
-  .home__next__match .next__match__timer {
+  .next__match__item .next__match__timer {
     position: relative;
-    width: 400px;
+    width: 100%;
     padding: auto;
-    height: 100px;
-    background-color: #f4f4f4; }
-    .home__next__match .next__match__timer .timer__box {
-      width: 100px;
+    height: auto;
+    background-color: #f4f4f4;
+    display: flex; }
+    .next__match__item .next__match__timer .expired {
+      width: 100%;
+      height: 100px; }
+      .next__match__item .next__match__timer .expired p {
+        text-align: center;
+        text-transform: uppercase;
+        color: black;
+        line-height: 100px; }
+    .next__match__item .next__match__timer .timer__box {
+      width: 24%;
       height: 100px;
-      border: 1px solid #e0e0e0; }
-      .home__next__match .next__match__timer .timer__box span {
+      border: 1px solid #e0e0e0;
+      margin: auto; }
+      .next__match__item .next__match__timer .timer__box span {
         display: inline-block;
         margin: auto;
         justify-content: center; }
-      .home__next__match .next__match__timer .timer__box .timer__numeric {
+      .next__match__item .next__match__timer .timer__box .timer__numeric {
         font-size: 2em; }
-      .home__next__match .next__match__timer .timer__box .timer__text {
+      .next__match__item .next__match__timer .timer__box .timer__text {
         font-size: 1.2em; }
-
-.last__result {
-  position: relative;
-  width: 400px;
-  height: 200px;
-  margin: auto;
-  border: 2px solid #e0e0e0; }
-  .last__result h2 {
+  .next__match__item .next__match__appoint {
     position: relative;
-    margin: 0;
+    width: 100%;
     height: 50px;
-    line-height: 50px;
+    background-color: #fff;
+    display: flex; }
+    .next__match__item .next__match__appoint p {
+      margin: auto;
+      text-align: center; }
+
+@media screen and (min-width: 800px) and (max-width: 1024px) {
+  .next__match__item {
+    width: 95%; }
+    .next__match__item .next__match__teams, .next__match__item .next__match__timer {
+      width: 100%; }
+      .next__match__item .next__match__teams .timer__box .timer__text, .next__match__item .next__match__timer .timer__box .timer__text {
+        font-size: 1em !important; } }
+@media screen and (min-width: 421px) and (max-width: 799px) {
+  .next__match__item {
+    width: 95%; }
+    .next__match__item .next__match__teams, .next__match__item .next__match__timer {
+      width: 100%; }
+      .next__match__item .next__match__teams .timer__box .timer__text, .next__match__item .next__match__timer .timer__box .timer__text {
+        font-size: 1em !important; } }
+@media screen and (max-width: 420px) {
+  .next__match__item {
+    width: 95%; }
+    .next__match__item .next__match__teams, .next__match__item .next__match__timer {
+      width: 100%; }
+      .next__match__item .next__match__teams .timer__box .timer__text, .next__match__item .next__match__timer .timer__box .timer__text {
+        font-size: 1em !important; }
+    .next__match__item .next__match__appoint p {
+      text-align: center !important; } }
+.section__sponsors {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 25px auto; }
+  .section__sponsors .sponsor__item {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 150px;
     text-align: center; }
-  .last__result .last__result__teams {
-    width: 400px;
-    height: 80px;
-    justify-content: space-between;
-    background-color: #e0e0e0; }
-    .last__result .last__result__teams .last__result_team_first, .last__result .last__result__teams .last__result_team_second {
-      display: flex;
-      width: 80px;
-      height: 80px;
-      padding-top: 10px;
+    .section__sponsors .sponsor__item .sponsor__logo {
+      width: 100%;
+      height: 80%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center; }
+    .section__sponsors .sponsor__item p {
+      margin: auto;
       text-align: center; }
-      .last__result .last__result__teams .last__result_team_first img, .last__result .last__result__teams .last__result_team_second img {
-        display: inline-block;
-        margin: auto;
-        width: 50px;
-        height: 50px;
-        padding: 5px; }
-    .last__result .last__result__teams .last__result__info {
-      text-align: center; }
-      .last__result .last__result__teams .last__result__info .last__result__info__date {
-        line-height: 50px; }
-      .last__result .last__result__teams .last__result__info .last__result__info__score {
-        line-height: 30px;
-        font-size: 1.3em; }
-  .last__result .last__result__label {
-    height: 70px;
-    text-align: center;
-    line-height: 70px;
-    font-size: 1.5em;
-    background-color: #e0e0e0; }
+
+@media screen and (min-width: 800px) and (max-width: 1024px) {
+  .sponsor__item {
+    width: 33% !important; } }
+@media screen and (min-width: 421px) and (max-width: 799px) {
+  .sponsor__item {
+    width: 50% !important; } }
+@media screen and (max-width: 420px) {
+  .sponsor__item {
+    width: 50% !important; } }
 
 /*# sourceMappingURL=home.css.map */

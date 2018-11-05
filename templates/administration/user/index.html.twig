@@ -1,10 +1,9 @@
 {% extends 'administration/admin.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Gestion des utilisateurs{% endblock %}
+{% block header %}Liste des utilisateurs{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
-
 	{% if is_granted('ROLE_USER') and app.user is not null %}
         <a href="{{ path('upgrade_user', {'email': app.user.email, 'role': "ROLE_ADMIN"}) }}">Upgrade to admin</a>
 	{% else %}
@@ -18,13 +17,10 @@
                 <th>Firstname</th>
                 <th>Lastname</th>
                 <th>Email</th>
-                <th>Password</th>
                 <th>Active</th>
                 <th>Roles</th>
                 <th>Date_register</th>
                 <th>Last_connexion</th>
-                <th>Token</th>
-                <th>Activation_code</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -35,13 +31,10 @@
                 <td>{{ user.firstname }}</td>
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.password }}</td>
                 <td>{{ user.active ? 'Yes' : 'No' }}</td>
                 <td>{{ user.roles ? user.roles|join(', ') : '' }}</td>
                 <td>{{ user.dateRegister ? user.dateRegister|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.lastConnexion ? user.lastConnexion|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ user.token }}</td>
-                <td>{{ user.activationCode }}</td>
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>

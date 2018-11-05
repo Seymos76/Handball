@@ -55,6 +55,11 @@ class Team
      */
     private $training;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
@@ -189,6 +194,18 @@ class Team
         if ($this !== $training->getTeam()) {
             $training->setTeam($this);
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
